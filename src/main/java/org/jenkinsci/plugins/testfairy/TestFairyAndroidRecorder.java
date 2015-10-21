@@ -56,19 +56,19 @@ public class TestFairyAndroidRecorder extends TestFairyBaseRecorder {
 
 
 	public String getKeystorePath() {
-		return keystorePath;
+		return envExpand(keystorePath);
 	}
 
 	public String getStorepass() {
-		return storepass;
+		return envExpand(storepass);
 	}
 
 	public String getAlias() {
-		return alias;
+		return envExpand(alias);
 	}
 
 	public String getKeypass() {
-		return keypass;
+		return envExpand(keypass);
 	}
 
 	@Override
@@ -80,6 +80,7 @@ public class TestFairyAndroidRecorder extends TestFairyBaseRecorder {
 		listener.getLogger().println("TestFairy Android Uploader... v " + Utils.getVersion(getClass()) + ", run on " + getHostName());
 		try {
 			EnvVars vars = build.getEnvironment(listener);
+			this.setEnvVars(vars);
 			String changeLog = Utils.extractChangeLog(vars, build.getChangeSet(), listener.getLogger());
 			AndroidBuildEnvironment environment = getDescriptor().getEnvironment(launcher);
 

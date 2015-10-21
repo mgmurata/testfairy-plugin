@@ -5,6 +5,8 @@ import hudson.tasks.Recorder;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.Serializable;
+	
+import hudson.EnvVars;
 
 public class TestFairyBaseRecorder extends Recorder implements Serializable {
 
@@ -59,20 +61,40 @@ public class TestFairyBaseRecorder extends Recorder implements Serializable {
 		this.openGl = openGl;
 	}
 
+	protected EnvVars vars_;
+
+	//! Expand Environment 
+
+	protected String envExpand(String str)
+	{
+		if(vars_ != null)
+		{
+			str = vars_.expand(str);
+		}
+		return str;
+	}
+
+	//! Setup Expand Environment Variable
+
+	protected void setEnvVars(EnvVars vars)
+	{
+		vars_ = vars;
+	}
+
 	public String getApiKey() {
-		return apiKey;
+		return envExpand(apiKey);
 	}
 
 	public String getAppFile() {
-		return appFile;
+		return envExpand(appFile);
 	}
 
 	public String getMappingFile() {
-		return mappingFile;
+		return envExpand(mappingFile);
 	}
 
 	public String getTestersGroups() {
-		return testersGroups;
+		return envExpand(testersGroups);
 	}
 
 	public Boolean getNotifyTesters() {
@@ -84,7 +106,7 @@ public class TestFairyBaseRecorder extends Recorder implements Serializable {
 	}
 
 	public String getMaxDuration() {
-		return maxDuration;
+		return envExpand(maxDuration);
 	}
 
 	public Boolean getRecordOnBackground() {
@@ -100,15 +122,15 @@ public class TestFairyBaseRecorder extends Recorder implements Serializable {
 	}
 
 	public String getScreenshotInterval() {
-		return screenshotInterval;
+		return envExpand(screenshotInterval);
 	}
 
 	public String getVideoQuality() {
-		return videoQuality;
+		return envExpand(videoQuality);
 	}
 
 	public String getAdvancedOptions() {
-		return advancedOptions;
+		return envExpand(advancedOptions);
 	}
 
 	public Boolean getCpu() {
