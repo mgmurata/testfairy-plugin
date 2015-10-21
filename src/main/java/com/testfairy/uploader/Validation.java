@@ -31,11 +31,41 @@ public class Validation implements Serializable {
 		toVerify.add(apkPath);
 
 		String out = exec(toVerify);
-		if (out != null && out.contains("jar verified.")) {
+		if (out != null && IsValidJarSigner(out)) {
 //			System.out.println(out);
 			return true;
 		}
 		return false;
+	}
+
+	private static boolean IsValidJarSigner(String out)
+	{
+		// for -Duser.language=ja
+		String[] ValidMessage = new String[]{
+			"jar verified.",						// en
+			"jarが検証されました。",		// ja
+		};
+		boolean bValid = false;
+		String out8;
+		try
+		{
+			// out = only ISO_8859_1 ?
+			out8 = new String(out.getBytes("ISO_8859_1"), "UTF-8");
+		}
+		catch (Throwable ue)
+		{
+			out8 = out;
+		}
+
+		for(String vmes : ValidMessage)
+		{
+			if(out8.contains(vmes))
+			{
+				bValid = true;
+				break;
+			}
+		}
+		return bValid;
 	}
 
 	public static FormValidation checkProgram(String value) {
