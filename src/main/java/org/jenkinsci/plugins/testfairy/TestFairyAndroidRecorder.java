@@ -137,7 +137,8 @@ public class TestFairyAndroidRecorder extends TestFairyBaseRecorder {
 
 	private void checkKeystoreParams(EnvVars vars) throws TestFairyException {
 
-		keystorePath = Utils.getFilePath(keystorePath, "keystore file" ,vars, true);
+		// Illegal Override Jenkins 'Path To Keystore file' Setting.
+		//keystorePath = Utils.getFilePath(keystorePath, "keystore file" ,vars, true);
 
 		if (getKeystorePath() == null || getKeystorePath().isEmpty()) {
 			throw new TestFairyException("Missing Keystore file");
