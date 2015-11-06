@@ -21,23 +21,23 @@ public class JarSignerCommand extends ArrayList<String> {
 		super();
 
 		try {
-			if (isJks(new File(recorder.getKeystorePath()))) {
+			if (isJks(new File(recorder.envExpand(recorder.getKeystorePath())))) {
 
 				add(jarsignerPath);
 				add("-keystore");
-				add(recorder.getKeystorePath());
+				add(recorder.envExpand(recorder.getKeystorePath()));
 				add("-storepass");
-				add(recorder.getStorepass());
+				add(recorder.envExpand(recorder.getStorepass()));
 				if (recorder.getKeypass() != null && !recorder.getKeypass().isEmpty() ) {
 					add("-keypass");
-					add(recorder.getKeypass());
+					add(recorder.envExpand(recorder.getKeypass()));
 				}
 				add("-digestalg");
 				add("SHA1");
 				add("-sigalg");
 				add("MD5withRSA");
 				add(apkFilename);
-				add(recorder.getAlias());
+				add(recorder.envExpand(recorder.getAlias()));
 
 			} else {
 				// pkcs12
@@ -45,11 +45,11 @@ public class JarSignerCommand extends ArrayList<String> {
 				add("-storetype");
 				add("pkcs12");
 				add("-storepass");
-				add(recorder.getStorepass());
+				add(recorder.envExpand(recorder.getStorepass()));
 				add("-keystore");
-				add(recorder.getKeystorePath());
+				add(recorder.envExpand(recorder.getKeystorePath()));
 				add(apkFilename);
-				add(recorder.getAlias());
+				add(recorder.envExpand(recorder.getAlias()));
 				//example - jarsigner -storetype pkcs12 -storepass 123456789 -keystore jenkins.keystore ham-testfairy.apk androiddebugkey
 			}
 		} catch (Exception e) {

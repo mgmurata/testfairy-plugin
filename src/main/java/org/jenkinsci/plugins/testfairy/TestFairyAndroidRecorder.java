@@ -56,19 +56,19 @@ public class TestFairyAndroidRecorder extends TestFairyBaseRecorder {
 
 
 	public String getKeystorePath() {
-		return envExpand(keystorePath);
+		return keystorePath;
 	}
 
 	public String getStorepass() {
-		return envExpand(storepass);
+		return storepass;
 	}
 
 	public String getAlias() {
-		return envExpand(alias);
+		return alias;
 	}
 
 	public String getKeypass() {
-		return envExpand(keypass);
+		return keypass;
 	}
 
 	@Override

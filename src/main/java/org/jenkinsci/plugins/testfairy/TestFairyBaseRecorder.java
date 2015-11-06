@@ -65,7 +65,7 @@ public class TestFairyBaseRecorder extends Recorder implements Serializable {
 
 	//! Expand Environment 
 
-	protected String envExpand(String str)
+	public String envExpand(String str)
 	{
 		if(vars_ != null)
 		{
@@ -82,19 +82,19 @@ public class TestFairyBaseRecorder extends Recorder implements Serializable {
 	}
 
 	public String getApiKey() {
-		return envExpand(apiKey);
+		return apiKey;
 	}
 
 	public String getAppFile() {
-		return envExpand(appFile);
+		return appFile;
 	}
 
 	public String getMappingFile() {
-		return envExpand(mappingFile);
+		return mappingFile;
 	}
 
 	public String getTestersGroups() {
-		return envExpand(testersGroups);
+		return testersGroups;
 	}
 
 	public Boolean getNotifyTesters() {
@@ -106,7 +106,7 @@ public class TestFairyBaseRecorder extends Recorder implements Serializable {
 	}
 
 	public String getMaxDuration() {
-		return envExpand(maxDuration);
+		return maxDuration;
 	}
 
 	public Boolean getRecordOnBackground() {
@@ -122,15 +122,15 @@ public class TestFairyBaseRecorder extends Recorder implements Serializable {
 	}
 
 	public String getScreenshotInterval() {
-		return envExpand(screenshotInterval);
+		return screenshotInterval;
 	}
 
 	public String getVideoQuality() {
-		return envExpand(videoQuality);
+		return videoQuality;
 	}
 
 	public String getAdvancedOptions() {
-		return envExpand(advancedOptions);
+		return advancedOptions;
 	}
 
 	public Boolean getCpu() {

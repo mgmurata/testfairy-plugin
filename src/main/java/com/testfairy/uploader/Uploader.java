@@ -161,8 +161,8 @@ public class Uploader {
 		addFileEntity(entity, "apk_file", apkFilename);
 		addFileEntity(entity, "proguard_file", mappingFile);
 
-		addEntity(entity, "api_key",  recorder.getApiKey());
-		addEntity(entity, "testers-groups",  recorder.getTestersGroups()); // if omitted, no emails will be sent to testers
+		addEntity(entity, "api_key",  recorder.envExpand(recorder.getApiKey()));
+		addEntity(entity, "testers-groups",  recorder.envExpand(recorder.getTestersGroups())); // if omitted, no emails will be sent to testers
 		addEntity(entity, "notify", recorder.getNotifyTesters());
 		addEntity(entity, "auto-update", recorder.getAutoUpdate());
 
@@ -185,13 +185,13 @@ public class Uploader {
 		addFileEntity(entity, "apk_file", apkFilename);
 		addFileEntity(entity, "proguard_file", mappingFile);
 
-		addEntity(entity, "api_key",  recorder.getApiKey());
+		addEntity(entity, "api_key",  recorder.envExpand(recorder.getApiKey()));
 		addEntity(entity, "changelog",  changeLog);
-		addEntity(entity, "video-quality",  recorder.getVideoQuality()); // if omitted, default value is "high"
-		addEntity(entity, "screenshot-interval",  recorder.getScreenshotInterval()); // if omitted, default is 1 frame per second (videoRate = 1.0)
-		addEntity(entity, "max-duration",  recorder.getMaxDuration()); // override default value
-		addEntity(entity, "testers-groups",  recorder.getTestersGroups()); // if omitted, no emails will be sent to testers
-		addEntity(entity, "advanced-options",  recorder.getAdvancedOptions());
+		addEntity(entity, "video-quality",  recorder.envExpand(recorder.getVideoQuality())); // if omitted, default value is "high"
+		addEntity(entity, "screenshot-interval",  recorder.envExpand(recorder.getScreenshotInterval())); // if omitted, default is 1 frame per second (videoRate = 1.0)
+		addEntity(entity, "max-duration",  recorder.envExpand(recorder.getMaxDuration())); // override default value
+		addEntity(entity, "testers-groups",  recorder.envExpand(recorder.getTestersGroups())); // if omitted, no emails will be sent to testers
+		addEntity(entity, "advanced-options",  recorder.envExpand(recorder.getAdvancedOptions()));
 
 		addEntity(entity, "data-only-wifi", recorder.getDataOnlyWifi());
 //		addEntity(entity, "auto-update", recorder.getAutoUpdate());
